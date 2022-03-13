@@ -11,6 +11,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {ToastModule} from 'primeng/toast';
+import {PasswordModule} from 'primeng/password';
 
 
 
@@ -29,7 +30,8 @@ import {ToastModule} from 'primeng/toast';
      InputTextModule,
      DropdownModule,
      InputNumberModule,
-     ToastModule
+     ToastModule,
+     PasswordModule
    ],
 })
 export class PrimeNgModule { }

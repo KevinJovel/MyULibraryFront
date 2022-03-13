@@ -1,0 +1,75 @@
+<p-card>
+    <p-toast></p-toast>
+    <p-table [value]="Users" styleClass="p-datatable-sm" responsiveLayout="scroll">
+        <ng-template pTemplate="caption">
+            <div fxLayout="row" fxLayoutAlign="space-between cente" >
+            <h4> User List</h4>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between cente">
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input type="text" pInputText (keyup)="search()" [(ngModel)]="searchTerm" placeholder="Search">         
+            </span>
+              <p-button (click)="showPositionDialog()" icon="pi pi-plus" label="New" styleClass="p-button-info"></p-button>
+           </div>
+           <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>E- mail</th>
+                <th>Role</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+            <tr>
+                <td>{{user.userId}}</td>
+                <td>{{user.firstName}} {{user.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.roleName}}</td>
+            </tr>
+        </ng-template>
+        <!-- <p-paginator [rows]="1" [totalRecords]="100"></p-paginator> -->
+    </p-table>
+</p-card>
+    
+<p-dialog [(visible)]="displayPosition" [position]="position"  [style]="{width: '500px'}" header="User Register" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <!-- <div class="row">
+               <pre>{{this.UsersForm.value | json}}</pre>
+            </div> -->
+            <form action=""  [formGroup]="this.UsersForm" >
+            <div class="field">
+                <label for="inventoryStatus">Role:</label>
+                <p-dropdown [options]="RolesList"  formControlName="roleId" optionValue="roleId" optionLabel="roleName" optionDisabled="inactive"></p-dropdown>
+            </div>
+            <div class="field">
+                <label for="name">First Name:</label>
+                <input type="text" formControlName="firstName"  pInputText  equired autofocus />
+            </div>
+            <div class="field">
+                <label for="name">Last Name:</label>
+                <input type="text" formControlName="lastName"  pInputText  required />
+            </div>
+            <div class="field">
+                <label for="name">E-mail:</label>
+                <input type="text" formControlName="email"  pInputText  required />
+            </div>
+            <div class="field">
+                <label for="name">Username:</label>
+                <input type="text" formControlName="userName"  pInputText  required  />
+            </div>
+            <div class="field">
+                <label for="name">Password:</label>
+                <p-password formControlName="password"></p-password>
+            </div>
+            <br>
+            <br>
+        </form>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" (click)="displayPosition=false"  class="p-button-text  btn-danger" ></button>
+        <button  pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveUser()"></button>
+    </ng-template>
+</p-dialog>

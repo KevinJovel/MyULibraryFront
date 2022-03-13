@@ -21,23 +21,17 @@ export class MenuComponent implements OnInit {
             //           {label: 'Other'},
             //       ]
             //   },
-              {label: 'Avaliable Books', 
+              {label: 'Book List', 
                routerLink: 'Book/book-list'},
               {label: 'My Loans'}
           ]
-      }, {
-        label: 'Loans',
-        icon: 'pi pi-fw pi-list',
-        items: [
-            {label: 'Loans List'},
-            // {label: 'Refresh', icon: 'pi pi-fw pi-refresh'}
-        ]
       },
       {
           label: 'Users',
           icon: 'pi pi-fw pi-users',
           items: [
-              {label: 'Add User', icon: 'pi pi-fw pi-user-plus'},
+              {label: 'Add User', icon: 'pi pi-fw pi-user-plus',
+              routerLink: 'User/user-list'},
               // {label: 'Refresh', icon: 'pi pi-fw pi-refresh'}
           ]
       }

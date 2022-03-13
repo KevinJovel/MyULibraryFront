@@ -1,6 +1,6 @@
 <p-card>
     <p-toast></p-toast>
-    <p-table [value]="products" styleClass="p-datatable-sm" responsiveLayout="scroll">
+    <p-table [value]="Books" styleClass="p-datatable-sm" responsiveLayout="scroll">
         <ng-template pTemplate="caption">
             <div fxLayout="row" fxLayoutAlign="space-between cente" >
             <h4> Book List</h4>
@@ -25,16 +25,16 @@
                 <th style="text-align: center;">Check out</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-product>
+        <ng-template pTemplate="body" let-book>
             <tr>
-                <td>{{product.bookID}}</td>
-                <td>{{product.title}}</td>
-                <td>{{product.author}}</td>
-                <td>{{product.genreId}}</td>
-                <td>{{product.publishedYear}}</td>
-                <td>{{product.stock}}</td>
+                <td>{{book.bookID}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.genreName}}</td>
+                <td>{{book.publishedYear}}</td>
+                <td>{{book.stock}}</td>
                 <td style="text-align: center;">
-                    <button pButton pRipple type="button" icon="pi pi-eye" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                    <button (click)="seeDetails(book.bookID)" pButton pRipple type="button" icon="pi pi-eye" class="p-button-rounded p-button-text p-button-success mr-2"></button>
                 </td>
             </tr>
         </ng-template>
@@ -65,14 +65,15 @@
                 <input type="text" pInputText  formControlName="publishedYear" required />
             </div>
             <div class="field">
-                <label for="name">Copies</label>
+                <label for="name">{{(processFlag=='new')?'Copies':'Available'}}</label>
                 <p-inputNumber formControlName="stock"></p-inputNumber>
             </div>
         </form>
     </ng-template>
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" (click)="displayPosition=false"  class="p-button-text  btn-danger" ></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveBook()"></button>
+        <button *ngIf="this.processFlag=='details'" pButton pRipple type="button" label="Check out" icon="pi pi-check" class="p-button-success p-button-text" (click)="saveBook()"></button>        
+        <button *ngIf="this.processFlag=='new'" pButton pRipple label="Save" icon="pi pi-check" class="p-button-success p-button-text" (click)="saveBook()"></button>
     </ng-template>
 </p-dialog>
 

@@ -16,6 +16,9 @@ export class BooksService {
   getBooks() {
     return this.http.get<IBook[]>(`${environment.urlService}/api/Books`);
   }
+  getBookById(Id: number) {
+    return this.http.get<IBook[]>(`${environment.urlService}/api/Books/${Id}`);
+  }
   setBook(book: IBook){
     return this.http.post<IBook>(`${environment.urlService}/api/Books`,book);
   }

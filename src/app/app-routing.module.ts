@@ -6,6 +6,11 @@ const routes: Routes = [
     path: "Book",
     loadChildren: () =>
       import("./Components/books/books.module").then((m) => m.BooksModule),
+  },
+  {
+    path: "User",
+    loadChildren: () =>
+      import("./Components/users/users.module").then((m) => m.UsersModule),
   }
 ];
 

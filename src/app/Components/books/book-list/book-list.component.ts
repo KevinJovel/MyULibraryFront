@@ -12,14 +12,15 @@ import { IGenre } from '../../../models/IGenre';
   providers: [MessageService]
 })
 export class BookListComponent implements OnInit {
-  products: IBook[]   =[];
-  productsCache: IBook[]   =[];
+  Books: IBook[]   =[];
+  BookssCache: IBook[]   =[];
   GenresList: IGenre[]   =[];
   displayPosition: boolean = false;
   position: string ='top';
   searchTerm:string ='';
 
   BooksForm: FormGroup;
+  processFlag:string ='new';
   constructor(private bookService:BooksService, private fb:FormBuilder, private messageService: MessageService) {
    this.BooksForm = this.fb.group({
       bookID:[0],        
@@ -27,7 +28,7 @@ export class BookListComponent implements OnInit {
       author:['', Validators.required],       
       publishedYear:['', Validators.required],
       stock:['', Validators.required],        
-      genreId:['', Validators.required],      
+      genreId:[1, Validators.required],   
     })
    }
 
@@ -40,19 +41,27 @@ export class BookListComponent implements OnInit {
   }
   getBooks(){
     this.bookService.getBooks().subscribe(res=>{
-      this.products = res;
-      this.productsCache = res;
+      this.Books = res;
+      this.BookssCache = res;
     });
   }
   showPositionDialog() {
+    this.processFlag='new';
     this.displayPosition = true;
   }
   close(){
-    alert('Entra')
     this.displayPosition = false;
   }
   search(){
-    this.products = this.productsCache.filter(x=>(x.author?.toUpperCase().includes(this.searchTerm.toUpperCase())) || (x.title?.toUpperCase().includes(this.searchTerm.toUpperCase())));
+    this.Books = this.BookssCache.filter(x=>(x.author?.toUpperCase().includes(this.searchTerm.toUpperCase())) || (x.title?.toUpperCase().includes(this.searchTerm.toUpperCase())||(x.genreName?.toUpperCase().includes(this.searchTerm.toUpperCase()))));
+  }
+  seeDetails(Id: number){
+    this.bookService.getBookById(Id).subscribe(res=>{
+      console.log(res);
+      this.BooksForm.setValue(res);
+      this.processFlag='details'
+      this.displayPosition = true;
+    })
   }
   saveBook(){
     this.bookService.setBook(this.BooksForm.value).subscribe(res=>{
@@ -63,6 +72,6 @@ export class BookListComponent implements OnInit {
     })
   }
   showSuccess() {
-        this.messageService.add({severity:'success', summary: 'Success', detail: 'Book saved successfuly'});
+        this.messageService.add({severity:'success', summary: 'Success', detail: 'Book saved successfully'});
     }
 }

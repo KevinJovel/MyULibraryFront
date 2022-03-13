@@ -5,4 +5,5 @@ export class IBook {
     publishedYear: number| undefined;
     stock:         number| undefined;
     genreId:       number| undefined;
+    genreName:     string | undefined;
 }
