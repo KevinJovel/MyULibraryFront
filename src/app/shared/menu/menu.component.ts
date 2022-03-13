@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { IBook } from 'src/app/models/IBook';
-import { BooksService } from '../../Services/books.service';
-
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -9,9 +6,7 @@ import { BooksService } from '../../Services/books.service';
 })
 export class MenuComponent implements OnInit {
   items:any[]  =[]
-  products: IBook[]   =[];
-  constructor(private bookService:BooksService) { }
-
+  constructor() { }
   ngOnInit(): void {
     this.items = [
       {
@@ -26,7 +21,8 @@ export class MenuComponent implements OnInit {
             //           {label: 'Other'},
             //       ]
             //   },
-              {label: 'Avaliable Books'},
+              {label: 'Avaliable Books', 
+               routerLink: 'Book/book-list'},
               {label: 'My Loans'}
           ]
       }, {
@@ -46,10 +42,6 @@ export class MenuComponent implements OnInit {
           ]
       }
   ];
-  this.bookService.getBooks().subscribe(res=>{
-    console.log(res);
-    this.products = res;
-  })
   }
 
 
