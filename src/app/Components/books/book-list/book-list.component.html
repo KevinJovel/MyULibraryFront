@@ -1,9 +1,16 @@
 <p-card>
+    <p-toast></p-toast>
     <p-table [value]="products" styleClass="p-datatable-sm" responsiveLayout="scroll">
         <ng-template pTemplate="caption">
             <div fxLayout="row" fxLayoutAlign="space-between cente" >
             <h4> Book List</h4>
-               <p-button (click)="showPositionDialog()" icon="pi pi-plus" label="New" styleClass="p-button-info"></p-button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between cente">
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input type="text" pInputText (keyup)="search()" [(ngModel)]="searchTerm" placeholder="Search">         
+            </span>
+              <p-button (click)="showPositionDialog()" icon="pi pi-plus" label="New" styleClass="p-button-info"></p-button>
            </div>
            <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
         </ng-template>
@@ -27,22 +34,45 @@
                 <td>{{product.publishedYear}}</td>
                 <td>{{product.stock}}</td>
                 <td style="text-align: center;">
-                    <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                    <button pButton pRipple type="button" icon="pi pi-eye" class="p-button-rounded p-button-text p-button-success mr-2"></button>
                 </td>
             </tr>
         </ng-template>
         <p-paginator [rows]="1" [totalRecords]="100"></p-paginator>
     </p-table>
 </p-card>
-<p-dialog header="Godfather I" [(visible)]="displayPosition" [position]="position" [modal]="true" [style]="{width: '50vw'}"
-    [draggable]="false" [resizable]="false">
-    <p>The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
-        His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
-        Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family,
-        kind and benevolent to those who give respect,
-        but given to ruthless violence whenever anything stands against the good of the family.</p>
-        <ng-template pTemplate="footer">
-            <p-button icon="pi pi-check" (click)="close()" label="Save" styleClass="p-button-text"></p-button>
-            <p-button icon="pi pi-check" (click)="displayPosition=false" label="Close" styleClass="p-button-text"></p-button>
-        </ng-template>
+    
+<p-dialog [(visible)]="displayPosition" [position]="position"  [style]="{width: '500px'}" header="Book Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <form action=""  [formGroup]="this.BooksForm" >
+                 <!-- <div class="row">
+                        <pre>{{this.BooksForm.value | json}}</pre>
+                    </div> -->
+            <div class="field">
+                <label for="name">Title</label>
+                <input type="text" formControlName="title"  pInputText  equired autofocus />
+            </div>
+            <div class="field">
+                <label for="inventoryStatus">Genre</label>
+                <p-dropdown [options]="GenresList"  formControlName="genreId" optionValue="genreId" optionLabel="name" optionDisabled="inactive"></p-dropdown>
+            </div>
+            <div class="field">
+                <label for="name">Author</label>
+                <input type="text" pInputText formControlName="author" required />
+            </div>
+            <div class="field">
+                <label for="name">Published Year</label>
+                <input type="text" pInputText  formControlName="publishedYear" required />
+            </div>
+            <div class="field">
+                <label for="name">Copies</label>
+                <p-inputNumber formControlName="stock"></p-inputNumber>
+            </div>
+        </form>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" (click)="displayPosition=false"  class="p-button-text  btn-danger" ></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveBook()"></button>
+    </ng-template>
 </p-dialog>
+

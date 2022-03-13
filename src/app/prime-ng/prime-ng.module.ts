@@ -7,6 +7,11 @@ import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
 import {PaginatorModule} from 'primeng/paginator';
 import {DialogModule} from 'primeng/dialog';
+import {InputTextModule} from 'primeng/inputtext';
+import {DropdownModule} from 'primeng/dropdown';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {ToastModule} from 'primeng/toast';
+
 
 
 
@@ -20,7 +25,11 @@ import {DialogModule} from 'primeng/dialog';
      PaginatorModule,
      DialogModule,
      ButtonModule,
-     FlexLayoutModule
-   ]  
+     FlexLayoutModule,
+     InputTextModule,
+     DropdownModule,
+     InputNumberModule,
+     ToastModule
+   ],
 })
 export class PrimeNgModule { }
