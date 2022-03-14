@@ -25,7 +25,8 @@ export class BookListComponent implements OnInit {
   LoanForm: FormGroup;
   processFlag:string ='new';
 
-  value5:string ='';
+  rolUser:string ='';
+  userId:string ='';
   constructor(private bookService:BooksService, private fb:FormBuilder, private messageService: MessageService) {
     this.BooksForm= this.fb.group({});
     this.LoanForm= this.fb.group({});
@@ -42,7 +43,7 @@ export class BookListComponent implements OnInit {
     });
     this.LoanForm = this.fb.group({
       bookId:[],
-      userId:[1],     
+      userId:[],     
       loanDate:[],  
       returnDate:[],
     })
@@ -53,7 +54,10 @@ export class BookListComponent implements OnInit {
     this.bookService.getGenres().subscribe(res=>{
       this.GenresList = res;
     })
-  
+    //Get user info
+    this.rolUser = sessionStorage.getItem("role") ?? '';
+    this.userId = sessionStorage.getItem("idUser") ?? '';
+    this.LoanForm.controls['userId'].setValue(Number(this.userId));
   }
   getBooks(){
     this.bookService.getBooks().subscribe(res=>{

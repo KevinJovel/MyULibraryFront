@@ -1,2 +1,7 @@
-<app-menu></app-menu>
-<router-outlet></router-outlet>
+<div *ngIf="!login">
+    <app-menu></app-menu>
+    <router-outlet></router-outlet>
+</div>
+<div *ngIf="login">
+    <app-login></app-login> 
+</div>

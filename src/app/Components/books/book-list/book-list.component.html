@@ -10,7 +10,7 @@
                 <i class="pi pi-search"></i>
                 <input type="text" pInputText (keyup)="search()" [(ngModel)]="searchTerm" placeholder="Search">         
             </span>
-              <p-button (click)="showPositionDialog()" icon="pi pi-plus" label="New" styleClass="p-button-info"></p-button>
+              <p-button *ngIf="rolUser=='2'" (click)="showPositionDialog()" icon="pi pi-plus" label="New" styleClass="p-button-info"></p-button>
            </div>
            <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
         </ng-template>
@@ -22,7 +22,7 @@
                 <th>Genre</th>
                 <th>Published Year</th>
                 <th>Stock</th>
-                <th style="text-align: center;">Check out</th>
+                <th style="text-align: center;">{{(rolUser=='2')?'Details':'Check out'}}</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-book>
@@ -62,7 +62,7 @@
             </div>
             <div class="field">
                 <label for="name">Published Year</label>
-                <input type="text" pInputText  formControlName="publishedYear" required />
+                <input type="text" pInputText mask="9999"  formControlName="publishedYear" required />
             </div>
             <div class="field">
                 <label for="name">{{(processFlag=='new')?'Copies':'Available'}}</label>
@@ -72,8 +72,8 @@
         </form>
     </ng-template>
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" (click)="displayPosition=false"  class="p-button-text  btn-danger" ></button>
-        <button *ngIf="this.processFlag=='details' && this.BooksForm.controls['stock'].value >0" pButton pRipple type="button" label="In Stock! Check out now!" icon="pi pi-check" class="p-button-success p-button-text" (click)="createLoan()"></button>        
+        <button pButton pRipple label="Close" icon="pi pi-times" (click)="displayPosition=false"  class="p-button-text  btn-danger" ></button>
+        <button *ngIf="this.processFlag=='details' && this.BooksForm.controls['stock'].value >0 && rolUser=='1'" pButton pRipple type="button" label="In Stock! Check out now!" icon="pi pi-check" class="p-button-success p-button-text" (click)="createLoan()"></button>        
         <button *ngIf="this.processFlag=='new'" pButton pRipple label="Save" icon="pi pi-check" class="p-button-success p-button-text" (click)="saveBook()"></button>
     </ng-template>
 </p-dialog>

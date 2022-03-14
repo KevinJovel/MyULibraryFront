@@ -7,8 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
 import { PrimeNgModule } from './prime-ng/prime-ng.module';
-import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UsersModule } from './Components/users/users.module';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ButtonModule,
     PrimeNgModule,
     SharedModule,
+    UsersModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,

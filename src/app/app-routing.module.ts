@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+
 const routes: Routes = [
   {
     path: "Book",
@@ -16,7 +17,16 @@ const routes: Routes = [
     path: "Loan",
     loadChildren: () =>
       import("./Components/loans/loans.module").then((m) => m.LoansModule),
-  }
+  },
+  {
+    path: "Shared",
+    loadChildren: () =>
+      import("./shared/shared.module").then((m) => m.SharedModule),
+  },
+  {
+    path: "**",
+    redirectTo: "/User/login",
+  },
 ];
 
 @NgModule({

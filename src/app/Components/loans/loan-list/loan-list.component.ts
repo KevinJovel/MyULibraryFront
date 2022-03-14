@@ -15,9 +15,14 @@ export class LoanListComponent implements OnInit {
   searchTerm:string ='';
   displayPosition: boolean = false;
   FilterType:string ='C';
+
+  rolUser:string ='';
+  userId:string ='';
   constructor(private bookService:BooksService,private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.rolUser = sessionStorage.getItem("role") ?? '';
+    this.userId = sessionStorage.getItem("idUser") ?? '';
     this.getLoans();
   }
   getLoans(){
@@ -34,6 +39,11 @@ export class LoanListComponent implements OnInit {
      })
      this.LoansCache = this.Loans;
      console.log(this.Loans)
+     if(this.rolUser=='1'){
+      this.Loans =this.Loans.filter(x=>(x.userId == Number(this.userId)));
+      this.LoansCache = this.Loans;
+      console.log(this.Loans);
+    }
    });
   }
   search(){

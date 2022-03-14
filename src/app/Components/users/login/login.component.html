@@ -1,0 +1,24 @@
+<p-toast></p-toast>
+<br><br>
+<p-toast position="top-center" key="tc"></p-toast>
+<div fxLayout="row" fxLayoutAlign="center center" >
+    <p-card header="Log In" [style]="{'width': '25rem', 'margin-bottom': '2em'}">
+        <ng-template pTemplate="header">
+        </ng-template>
+                <div class="field">
+                    <label for="name">Username:</label>
+                    <br>
+                    <input [(ngModel)]="user" type="text"  pInputText  required  />
+                </div>
+                <div>
+                    <label for="name">Password:</label>
+                    <br>
+                    <p-password [(ngModel)]="pass" [feedback]="false" [toggleMask]="true"></p-password>
+                </div>
+                <br>
+                <div>
+                    <p-button label="Log In"  class="p-button-success p-button-text" (onClick)="logIn()"></p-button>
+                </div>
+                <!-- <button pButton pRipple type="button" label="In Stock! Check out now!" icon="pi pi-check" class="p-button-success p-button-text"></button>         -->
+    </p-card>   
+</div>

@@ -7,14 +7,14 @@ import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 
 @NgModule({
   declarations: [
-    MenuComponent
+    MenuComponent,
   ],
   exports:[
-    MenuComponent
+    MenuComponent,
   ],
   imports: [
     CommonModule,
-    PrimeNgModule
+    PrimeNgModule,
   ]
 })
 export class SharedModule { }

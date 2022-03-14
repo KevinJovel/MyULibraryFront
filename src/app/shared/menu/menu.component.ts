@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
           items: [
               {label: 'Book List', 
                routerLink: 'Book/book-list'},
-              {label: 'My Loans',
+              {label: 'Loans History',
               routerLink: 'Loan/loan-list'}
           ]
       },
@@ -27,8 +27,21 @@ export class MenuComponent implements OnInit {
               routerLink: 'User/user-list'},
               // {label: 'Refresh', icon: 'pi pi-fw pi-refresh'}
           ]
+      },
+      {
+          label: 'Profile',
+          icon: 'pi pi-fw pi-sign-out',
+          items: [
+            {label: 'Log out', icon: 'pi pi-fw pi-sign-out',
+            routerLink: 'User/logout' },
+            // {label: 'Refresh', icon: 'pi pi-fw pi-refresh'}
+        ]
+         
       }
   ];
+  }
+  logOut(){
+    alert("Se ejecuta")
   }
 
 
