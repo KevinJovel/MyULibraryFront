@@ -12,7 +12,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {ToastModule} from 'primeng/toast';
 import {PasswordModule} from 'primeng/password';
-
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 
 
@@ -31,7 +31,8 @@ import {PasswordModule} from 'primeng/password';
      DropdownModule,
      InputNumberModule,
      ToastModule,
-     PasswordModule
+     PasswordModule,
+     ConfirmDialogModule,
    ],
 })
 export class PrimeNgModule { }

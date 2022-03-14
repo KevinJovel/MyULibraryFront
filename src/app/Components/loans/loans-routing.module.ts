@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoanListComponent } from './loan-list/loan-list.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
       {
-        path: 'book-list',
-        // component: lo,
+        path: 'loan-list',
+        component: LoanListComponent,
         data: {
-          title: 'Book List',
+          title: 'Loan List',
           // urls: [
           //   { title: 'Dashboard', url: '/dashboard' },
           //   { title: 'Historial de Salarios' }

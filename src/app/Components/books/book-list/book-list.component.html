@@ -50,11 +50,11 @@
                     </div> -->
             <div class="field">
                 <label for="name">Title</label>
-                <input type="text" formControlName="title"  pInputText  equired autofocus />
+                <input id="disabled-input" type="text" pInputText formControlName="title" required autofocus/>
             </div>
             <div class="field">
                 <label for="inventoryStatus">Genre</label>
-                <p-dropdown [options]="GenresList"  formControlName="genreId" optionValue="genreId" optionLabel="name" optionDisabled="inactive"></p-dropdown>
+                <p-dropdown [options]="GenresList" [disabled]="disabled"  formControlName="genreId" optionValue="genreId" optionLabel="name" optionDisabled="inactive"></p-dropdown>
             </div>
             <div class="field">
                 <label for="name">Author</label>
@@ -66,13 +66,14 @@
             </div>
             <div class="field">
                 <label for="name">{{(processFlag=='new')?'Copies':'Available'}}</label>
-                <p-inputNumber formControlName="stock"></p-inputNumber>
+                <p-inputNumber [disabled]="disabled" formControlName="stock"></p-inputNumber>
+                <small class="p-error" *ngIf="this.processFlag!='new' && this.BooksForm.controls['stock'].value <=0">There is no stock.</small>
             </div>
         </form>
     </ng-template>
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" (click)="displayPosition=false"  class="p-button-text  btn-danger" ></button>
-        <button *ngIf="this.processFlag=='details'" pButton pRipple type="button" label="Check out" icon="pi pi-check" class="p-button-success p-button-text" (click)="saveBook()"></button>        
+        <button *ngIf="this.processFlag=='details' && this.BooksForm.controls['stock'].value >0" pButton pRipple type="button" label="In Stock! Check out now!" icon="pi pi-check" class="p-button-success p-button-text" (click)="createLoan()"></button>        
         <button *ngIf="this.processFlag=='new'" pButton pRipple label="Save" icon="pi pi-check" class="p-button-success p-button-text" (click)="saveBook()"></button>
     </ng-template>
 </p-dialog>

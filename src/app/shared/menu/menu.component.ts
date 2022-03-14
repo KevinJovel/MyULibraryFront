@@ -13,17 +13,10 @@ export class MenuComponent implements OnInit {
           label: 'Books',
           icon: 'pi pi-fw pi-book',
           items: [
-            // {
-            //       label: 'Avaliable Books', 
-            //       icon: 'pi pi-fw pi-plus',
-            //       items: [
-            //           {label: 'Project'},
-            //           {label: 'Other'},
-            //       ]
-            //   },
               {label: 'Book List', 
                routerLink: 'Book/book-list'},
-              {label: 'My Loans'}
+              {label: 'My Loans',
+              routerLink: 'Loan/loan-list'}
           ]
       },
       {
