@@ -18,7 +18,6 @@ export class LibraryGuardGuard implements CanActivate, CanLoad {
           return true;
         }else{
           //redirect login error
-          debugger
           this.router.navigate(["/User/unauthorized"]);
           return false;
         }

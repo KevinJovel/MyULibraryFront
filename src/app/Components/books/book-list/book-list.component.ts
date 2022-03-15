@@ -27,6 +27,7 @@ export class BookListComponent implements OnInit {
 
   rolUser:string ='';
   userId:string ='';
+  loading: boolean = false;
   constructor(private bookService:BooksService, private fb:FormBuilder, private messageService: MessageService) {
     this.BooksForm= this.fb.group({});
     this.LoanForm= this.fb.group({});
@@ -50,6 +51,7 @@ export class BookListComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.loading = true;
     this.getBooks();
     this.bookService.getGenres().subscribe(res=>{
       this.GenresList = res;
@@ -58,6 +60,7 @@ export class BookListComponent implements OnInit {
     this.rolUser = sessionStorage.getItem("role") ?? '';
     this.userId = sessionStorage.getItem("idUser") ?? '';
     this.LoanForm.controls['userId'].setValue(Number(this.userId));
+    this.loading=false;
   }
   getBooks(){
     this.bookService.getBooks().subscribe(res=>{

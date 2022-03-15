@@ -64,6 +64,11 @@
                 <label for="name">Password:</label>
                 <p-password formControlName="password"></p-password>
             </div>
+            <div class="field">
+                <label for="name">Confirm Password:</label>
+                <p-password #val [(ngModel)]="passconfirm"  (keyup)='value(val.value)' [feedback]="false"></p-password>
+            </div>
+            <small class="p-error" *ngIf="this.passconfirm!='' && (this.passconfirm != this.UsersForm.controls['password'].value)">There is no password match.</small>
             <br>
             <br>
         </form>

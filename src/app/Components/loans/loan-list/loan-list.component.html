@@ -10,13 +10,8 @@
                 <i class="pi pi-search"></i>
                 <input type="text" pInputText (keyup)="search()" [(ngModel)]="searchTerm" placeholder="Search">         
             </span>
-            <!-- <span class="p-input-icon-left">
-                <i class="pi pi-search"></i>
-                <input type="text" pInputText (keyup)="search()" [(ngModel)]="searchTerm" placeholder="Search">         
-            </span> -->
               <p-button (click)="changeFilter()" icon="pi pi-eye" label="{{(FilterType=='C')?'See History':'See current loans'}}" styleClass="p-button-info"></p-button>
            </div>
-           <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
@@ -34,7 +29,6 @@
                 <td>{{loan.loanDate | date:"MM-dd-yyyy"}}</td>
                 <td *ngIf="FilterType=='H'">{{loan.returnDate | date:"MM-dd-yyyy"}}</td>
                 <td *ngIf="FilterType=='C' && rolUser=='2'" style="text-align: center;">
-                    <!-- <p-button (click)="confirm1()" icon="pi pi-check-square"  label="Confirm" styleClass="mr-2" class="p-button-rounded p-button-text p-button-success mr-2"></p-button> -->
                      <button (click)="confirm1(loan)"  pButton pRipple type="button" icon="pi pi-check-square" class="p-button-rounded p-button-text p-button-success mr-2"></button> 
                 </td>
             </tr>
@@ -43,38 +37,4 @@
     </p-table>
 </p-card>
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
-
-<!-- <p-dialog [(visible)]="displayPosition" [position]="position"  [style]="{width: '500px'}" header="Book Details" [modal]="true" styleClass="p-fluid">
-    <ng-template pTemplate="content">
-        <form action=""  [formGroup]="this.BooksForm" >
-
-            <div class="field">
-                <label for="name">Title</label>
-                <input id="disabled-input" type="text" pInputText formControlName="title" required autofocus/>
-            </div>
-            <div class="field">
-                <label for="inventoryStatus">Genre</label>
-                <p-dropdown [options]="GenresList" [disabled]="disabled"  formControlName="genreId" optionValue="genreId" optionLabel="name" optionDisabled="inactive"></p-dropdown>
-            </div>
-            <div class="field">
-                <label for="name">Author</label>
-                <input type="text" pInputText formControlName="author" required />
-            </div>
-            <div class="field">
-                <label for="name">Published Year</label>
-                <input type="text" pInputText  formControlName="publishedYear" required />
-            </div>
-            <div class="field">
-                <label for="name">{{(processFlag=='new')?'Copies':'Available'}}</label>
-                <p-inputNumber [disabled]="disabled" formControlName="stock"></p-inputNumber>
-                <small class="p-error" *ngIf="this.processFlag!='new' && this.BooksForm.controls['stock'].value <=0">There is no stock.</small>
-            </div>
-        </form>
-    </ng-template>
-    <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" (click)="displayPosition=false"  class="p-button-text  btn-danger" ></button>
-        <button *ngIf="this.processFlag=='details' && this.BooksForm.controls['stock'].value >0" pButton pRipple type="button" label="In Stock! Check out now!" icon="pi pi-check" class="p-button-success p-button-text" (click)="createLoan()"></button>        
-        <button *ngIf="this.processFlag=='new'" pButton pRipple label="Save" icon="pi pi-check" class="p-button-success p-button-text" (click)="saveBook()"></button>
-    </ng-template>
-</p-dialog> -->
 

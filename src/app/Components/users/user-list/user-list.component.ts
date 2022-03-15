@@ -21,6 +21,7 @@ export class UserListComponent implements OnInit {
   searchTerm:string ='';
 
   UsersForm: FormGroup;
+  passconfirm:string='';
   constructor(private userService:UsersService, private fb:FormBuilder, private messageService: MessageService) {
     this.UsersForm = this.fb.group({
       userId:[0],    
@@ -66,5 +67,8 @@ export class UserListComponent implements OnInit {
   }
   showSuccess() {
     this.messageService.add({severity:'success', summary: 'Success', detail: 'User saved successfully'});
+ }
+ value(val : string){
+   this.passconfirm = val;
  }
 }
