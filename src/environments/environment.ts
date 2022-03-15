@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlService: 'https://localhost:44313'
+  urlService: 'https://my-ulibraryapi.azurewebsites.net'
 };
 
 /*

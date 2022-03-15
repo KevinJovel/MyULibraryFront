@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit{
   login:boolean=true;
   registro:boolean=false;
-  title = 'MyULibraryFront';
+  title = 'My ULibrary System';
   constructor(private router: Router){
 
   }
